@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import {
   Card,
   CardContent,
@@ -8,7 +7,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import LinkBtn from "@/components/atoms/LinkBtn.astro";
-const { name, description, href, ctext, clink, tools, langs, date } =
+const { name, description, href, ctext, clink, date } =
   Astro.props;
 ---
 
@@ -22,37 +21,6 @@ const { name, description, href, ctext, clink, tools, langs, date } =
     <p>{description}</p>
     <p class="text-sm pt-2 text-zinc-600 dark:text-zinc-400">{date}</p>
     <br />
-    <div class="flex gap-2">
-      <!-- {
-        langs
-          .split(",")
-          .map((lang: string) => (
-            <Image
-              src={`https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/${lang}.svg`}
-              width="48"
-              height="48"
-              alt="Project Skills"
-              class="skills-icons"
-            />
-          ))
-      } -->
-    </div>
-    <br />
-    <div class="flex gap-2">
-      <!-- {
-        tools
-          .split(",")
-          .map((tool: string) => (
-            <Image
-              src={`https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/${tool}.svg`}
-              width="48"
-              height="48"
-              alt="Project Skills"
-              class="skills-icons"
-            />
-          ))
-      } -->
-    </div>
   </CardContent>
   <CardFooter>
     <LinkBtn
