@@ -6,7 +6,7 @@ import { Image } from "astro:assets";
 import favicon from "@/assets/favicon.jpg";
 ---
 
-<PageLayout title="About" header="About Me">
+<PageLayout title="About" header="About Us">
   <div class="flex flex-col md:flex-row gap-6 items-center">
     <div class="flex flex-col items-center">
       <Image
@@ -15,7 +15,7 @@ import favicon from "@/assets/favicon.jpg";
         class="max-w-60 max-h-60 rounded-md"
       />
       <br />
-      <LinkBtn text="View Resume" href={resume} target="_blank" />
+      <!-- <LinkBtn text="View Resume" href={resume} target="_blank" /> -->
     </div>
     <div>
       {

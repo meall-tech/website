@@ -1,12 +1,13 @@
 ---
 import IndexLayout from "@/layouts/IndexLayout.astro";
-import { name, tagline } from "@/content/data/index.json";
+import { name, tagline, subtag } from "@/content/data/index.json";
 ---
 
 <IndexLayout
   title="Home"
   header={name}
   subheader={tagline}
-  btntext="About Me"
+  subsubheader={subtag}
+  btntext="About Us"
   link="/about"
 />

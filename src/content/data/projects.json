@@ -1,32 +1,20 @@
 {
   "projects": [
     {
-      "name": "Persona.fm",
-      "description": "A full stack Next.js application that uses the Last.FM API to show users snapshots of their listening habits.",
-      "link": "https://github.com/raspberri05/persona.fm",
-      "langs": "TypeScript,JavaScript,HTML,CSS,PostgreSQL-Dark",
-      "tools": "NextJS-Dark,TailwindCSS-Dark,Supabase-Dark,React-Dark,Figma-Dark,Markdown-Dark",
-      "date": "Summer 2024 - Present",
+      "name": "Edgebox",
+      "description": "Edgebox is a privacy-focused server operating system that runs open source apps and give users back their data and privacy settings.",
+      "link": "https://github.com/edgebox-iot/",
+      "date": "Copyright 2020",
       "custom": {
         "text": "View live site",
-        "link": "https://personafm.vercel.app"
+        "link": "https://edgebox.i"
       }
     },
     {
-      "name": "QDev",
-      "description": "A Python CLI tool that processes a user's natural language input to generate various terminal commands that are helpful when setting up a project.",
-      "link": "https://github.com/raspberri05/qdev",
-      "date": "Fall 2024 - Present",
-      "langs": "Python-Dark,Bash-Dark",
-      "tools": "FastAPI"
-    },
-    {
-      "name": "ChairSense",
-      "description": "For wheelchair users, it can be hard to see what's behind the chair, especially when backing up or turning, which can be dangerous because there is a high potential to hit an object or person. The aim of this project is to solve that problem by creating a low-cost device that can detect obstacles and warn the wheelchair user so they don't hit objects or people.",
-      "link": "https://github.com/raspberri05/chairSense",
-      "langs": "CPP",
-      "tools": "Arduino",
-      "date": "Fall 2021"
+      "name": "FlatStore",
+      "description": "An alternative appstore and management tool for flat native apps and web views on QuestOS.",
+      "link": "https://github.com/meall-tech/flatstore",
+      "date": "Fall 2024"
     }
   ]
 }
