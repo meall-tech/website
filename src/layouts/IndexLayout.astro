@@ -104,13 +104,15 @@ const { title, subheader, subsubheader } = Astro.props;
     });
 
     const neonText = document.querySelector('.neon-text');
-    setTimeout(() => {
-      neonText.classList.add('flicker');
-    }, 500); // Start flicker after 0.5s
+    if (neonText) {
+      setTimeout(() => {
+        neonText.classList.add('flicker');
+      }, 500); // Start flicker after 0.5s
 
-    setTimeout(() => {
-      neonText.classList.remove('flicker');
-      neonText.classList.add('pulsate');
-    }, 1000); // 0.5s flicker duration + 0.5s initial delay
+      setTimeout(() => {
+        neonText.classList.remove('flicker');
+        neonText.classList.add('pulsate');
+      }, 1000); // 0.5s flicker duration + 0.5s initial delay
+    }
   });
 </script>
