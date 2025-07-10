@@ -1,0 +1,21 @@
+---
+import { products as p } from "@/content/data/products.json";
+import Product from "@/components/molecules/Product.astro";
+---
+
+{
+  p.map((product) => (
+    <>
+      <Product
+        name={product.name}
+        description={product.description}
+        href={product.link}
+        ctext={product.custom?.text}
+        clink={product.custom?.link}
+        date={product.date}
+      />
+      <br />
+      <br />
+    </>
+  ))
+}

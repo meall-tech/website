@@ -3,7 +3,7 @@
 ## About
 
 This is MeAll's website, build with Astro.
-A minimalistic website to showcase projects and news.
+A minimalistic website to showcase products and news.
 
 ### Development
 
