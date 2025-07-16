@@ -8,12 +8,10 @@
       "custom": {
         "text": "Website",
         "link": "https://edgebox.io"
-      }
-    },
-    {
-      "name": "BeatBaker",
-      "description": "BeatBaker is a music production software that allows users to create, edit, and produce music tracks with AI assistance.",
-      "date": "Fall 2024"
+      },
+      "images": [
+        "/product-1-1.png"
+      ]
     }
   ]
 }

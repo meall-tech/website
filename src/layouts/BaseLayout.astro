@@ -1,11 +1,25 @@
 ---
 import Head from "@/components/atoms/Head.astro";
+import { ViewTransitions } from "astro:transitions";
 
 const { title } = Astro.props;
 ---
 
 <html lang="en">
-  <Head title={title} />
+  <head>
+    <Head title={title} />
+    <ViewTransitions fallback="swap" />
+    <script>
+      // This script ensures proper handling of view transitions across the site
+      document.addEventListener('astro:page-load', () => {
+        console.log('Page loaded completely');
+      });
+      
+      document.addEventListener('astro:after-swap', () => {
+        console.log('Content swapped');
+      });
+    </script>
+  </head>
   <body>
     <slot />
   </body>

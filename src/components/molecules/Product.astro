@@ -7,29 +7,54 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import LinkBtn from "@/components/atoms/LinkBtn.astro";
-const { name, description, href, ctext, clink, date } =
-  Astro.props;
+const { name, description, href, ctext, clink, date, images } = Astro.props;
 ---
 
 <Card
-  className="dark:hover:bg-zinc-800 hover:bg-zinc-300 dark:bg-zinc-900 bg-zinc-200"
+  className="dark:hover:bg-zinc-800 hover:bg-zinc-300 dark:bg-zinc-900 bg-zinc-200 flex flex-col md:flex-row justify-between min-h-[280px] overflow-hidden"
 >
-  <CardHeader>
-    <CardTitle>{name}</CardTitle>
-  </CardHeader>
-  <CardContent>
-    <p>{description}</p>
-    <p class="text-sm pt-2 text-zinc-600 dark:text-zinc-400">{date}</p>
-    <br />
-  </CardContent>
-  <CardFooter>
-    <LinkBtn
-      className="ml-[-10px]"
-      text="View on Github"
-      href={href}
-      size="base"
-      target="_blank"
-    />
-    {ctext && <LinkBtn text={ctext} href={clink} size="base" target="_blank" />}
-  </CardFooter>
+  <div class="w-full md:w-1/2 flex flex-col">
+    <CardHeader>
+      <CardTitle>{name}</CardTitle>
+    </CardHeader>
+    <CardContent className="flex-grow">
+      <p>{description}</p>
+      <p class="text-sm pt-2 text-zinc-600 dark:text-zinc-400">{date}</p>
+    </CardContent>
+    <CardFooter>
+      <LinkBtn
+        className="ml-[-10px]"
+        text="View on Github"
+        href={href}
+        size="base"
+        target="_blank"
+      />
+      {
+        ctext && (
+          <LinkBtn text={ctext} href={clink} size="base" target="_blank" />
+        )
+      }
+    </CardFooter>
+  </div>
+
+  {
+    images && images.length > 0 && (
+      <div
+        class="w-full md:w-1/2 relative flex items-center justify-center p-4 group"
+      >
+        <div
+          class="relative w-full h-full flex items-center justify-end -space-x-24"
+        >
+          {images.slice(0, 3).map((src: string, index: number) => (
+            <img
+              src={src}
+              alt={`${name} screenshot ${index + 1}`}
+              class="relative rounded-lg shadow-xl w-auto h-128 transform transition-transform group-hover:scale-125"
+              style={`z-index: ${index};`}
+            />
+          ))}
+        </div>
+      </div>
+    )
+  }
 </Card>

@@ -1,18 +1,13 @@
 ---
 import PageLayout from "@/layouts/PageLayout.astro";
 import { paragraphs } from "@/content/data/about.json";
-import { Image } from "astro:assets";
-import favicon from "@/assets/favicon.jpg";
+
 ---
 
-<PageLayout title="About" header="About Us">
+<PageLayout title="About" header="About">
   <div class="flex flex-col md:flex-row gap-6 items-center">
     <div class="flex flex-col items-center">
-      <Image
-        src={favicon}
-        alt="Square portrait of Naya Singhania"
-        class="max-w-60 max-h-60 rounded-md"
-      />
+      <div class="text-[5rem] font-bold neon-text animate-on-load" transition:name="hero-logo">△_<span class="text-[4.5rem]">△</span></div>
       <br />
     </div>
     <div>

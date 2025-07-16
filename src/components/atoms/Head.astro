@@ -10,6 +10,13 @@ import { name } from "@/content/data/about.json";
   <meta name="description" content="MeAll Technologies - A privacy and ownership-focused technology company." />
   <link rel="icon" href="/favicon.jpg" />
   <link rel="sitemap" href="/sitemap-0.xml" />
+  <script is:inline>
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
 </head>
 <!-- Google tag (gtag.js) -->
 <script

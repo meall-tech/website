@@ -4,36 +4,43 @@ import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function ModeToggle() {
-  const [theme, setThemeState] = React.useState<
-    "theme-light" | "dark" | "system"
-  >("theme-light");
+  const [theme, setTheme] = React.useState("light");
 
   React.useEffect(() => {
-    const isDarkMode = document.documentElement.classList.contains("dark");
-    setThemeState(isDarkMode ? "dark" : "theme-light");
+    const storedTheme = localStorage.getItem("theme") || "light";
+    setTheme(storedTheme);
   }, []);
 
-  React.useEffect(() => {
-    const isDark =
-      theme === "dark" ||
-      (theme === "system" &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
-  }, [theme]);
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(newTheme);
+  };
 
-  function setStateWrapper() {
-    if (theme === "theme-light") {
-      setThemeState("dark");
-    } else if (theme === "dark") {
-      setThemeState("theme-light");
-    }
-  }
+  React.useEffect(() => {
+    const handleStorageChange = () => {
+      const storedTheme = localStorage.getItem("theme") || "light";
+      setTheme(storedTheme);
+      document.documentElement.classList.remove("light", "dark");
+      document.documentElement.classList.add(storedTheme);
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    document.addEventListener("astro:after-swap", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      document.removeEventListener("astro:after-swap", handleStorageChange);
+    };
+  }, []);
 
   return (
     <Button
       variant="outline"
       size="icon"
-      onClick={() => setStateWrapper()}
+      onClick={toggleTheme}
       aria-label="light/dark mode toggle"
     >
       <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />

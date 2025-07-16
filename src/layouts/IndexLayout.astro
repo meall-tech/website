@@ -7,7 +7,7 @@ const { title, subheader, subsubheader } = Astro.props;
   <div
     class="flex flex-col h-[75vh] text-center justify-center items-center pr-10 md:pr-0"
   >
-    <div class="text-[5rem] font-bold neon-text animate-on-load">△_<span class="text-[4.5rem]">△</span></div>
+    <div class="text-[5rem] font-bold neon-text animate-on-load" transition:name="hero-logo">△_<span class="text-[4.5rem]">△</span></div>
     <h1 class="animate-on-load delay-1">{subheader}</h1>
     <h3 class="animate-on-load delay-2">{subsubheader}</h3>
     <br />
@@ -94,25 +94,55 @@ const { title, subheader, subsubheader } = Astro.props;
 </style>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
+  function animateElements() {
+    console.log("Running animations for home page");
+    
+    // Force repaint to ensure elements are ready for animation
+    document.body.style.display = 'none';
+    document.body.offsetHeight; // Force reflow
+    document.body.style.display = '';
+    
+    // Add small delay to ensure DOM is fully ready after transition
+    setTimeout(() => {
+      const elements = document.querySelectorAll('.animate-on-load');
+      console.log("Found elements to animate:", elements.length);
+      
+      elements.forEach((el) => {
+        el.classList.add('is-visible');
+      });
+  
+      const neonText = document.querySelector('.neon-text');
+      if (neonText) {
+        console.log("Found neon text, animating");
+        setTimeout(() => {
+          neonText.classList.add('flicker');
+        }, 500); // Start flicker after 0.5s
+  
+        setTimeout(() => {
+          neonText.classList.remove('flicker');
+          neonText.classList.add('pulsate');
+        }, 1000); // 0.5s flicker duration + 0.5s initial delay
+      }
+    }, 50); // Small delay to ensure DOM is ready
+  }
+
+  // Handle all possible page transition and load events
+  document.addEventListener("DOMContentLoaded", animateElements);
+  document.addEventListener("astro:page-load", animateElements);
+  document.addEventListener("astro:after-swap", animateElements);
+  
+  // Reset animation classes when navigating away
+  document.addEventListener("astro:before-swap", () => {
+    console.log("Resetting animation classes before transition");
     const elements = document.querySelectorAll('.animate-on-load');
     elements.forEach((el) => {
-      // A small timeout to ensure the initial state is rendered before adding the visible class
-      setTimeout(() => {
-        el.classList.add('is-visible');
-      }, 100);
+      el.classList.remove('is-visible');
     });
-
+    
     const neonText = document.querySelector('.neon-text');
     if (neonText) {
-      setTimeout(() => {
-        neonText.classList.add('flicker');
-      }, 500); // Start flicker after 0.5s
-
-      setTimeout(() => {
-        neonText.classList.remove('flicker');
-        neonText.classList.add('pulsate');
-      }, 1000); // 0.5s flicker duration + 0.5s initial delay
+      neonText.classList.remove('flicker');
+      neonText.classList.remove('pulsate');
     }
   });
 </script>
